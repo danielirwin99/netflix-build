@@ -8,6 +8,7 @@ const HomeScreen = () => {
       {/* Nav */}
       <Nav />
 
+      <h1>Testing on mac</h1>
       <h1>Test</h1>
       <h1>Test</h1>
       <h1>Test</h1>
