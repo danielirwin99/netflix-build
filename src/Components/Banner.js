@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/Banner.css";
-import axios from '../Utils/axios'
+import axios from "../Utils/axios";
+import requests from "../Utils/Requests";
 
 const Banner = () => {
-  const [movie,setMovie] = useState([])
+  const [movie, setMovie] = useState([]);
 
-  async function fetchData () {
-    const request = await axios
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(requests.fetchPopular);
+      setMovie(
+        request.data.results[
+          Math.floor(Math.random() * request.data.results.length - 1)
+        ]
+      );
+      return request;
+    }
 
-useEffect(()=> {
-fetchData()
-
-},[])
+    fetchData();
+  }, []);
+  console.log(movie);
 
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
@@ -23,7 +30,7 @@ fetchData()
       className="banner"
       style={{
         backgroundSize: "cover",
-        backgroundImage: `url("https://upload.wikimedia.org/wikipedia/commons/c/cd/Black_flag.svg")`,
+        backgroundImage: `url("https://image.tmdb.org/t/p/original/")`,
         backgroundPosition: "center center",
       }}
     >
